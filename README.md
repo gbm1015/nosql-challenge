@@ -2,7 +2,7 @@
 
 ## Background
 
-The UK Food Standards Agency evaluated various establishments across the United Kingdom, and gives them a food hygiene rating. The editors of a food magazine, Eat Safe, Love, contracted me to evaluate some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
+The UK Food Standards Agency evaluated various establishments across the United Kingdom, and gave them a food hygiene rating. The editors of a food magazine, Eat Safe, Love, contracted me to evaluate some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
 
 ### Before opening the starter code in Jupyter Notebook
 
@@ -26,15 +26,65 @@ Used NoSQL_setup_final.ipynb for this section of the challenge.
     
 ## Part 2 - Updated the Database
 
-1. Inspected the 4 CSV files (category.csv,subcategory.csv,contacts.csv, and campaign.csv), then sketched an ERD of the tables by using sqlflow.gudusoft.com
-2. Used the information from the ERD to create the table schema for each CSV file.  Our instructor, Ms. Kalika, also provided us with the schema sql code for creating the tables. 
-3. Saved the database schema as a Postgres file named PostgreSQL code.sql.
-4. Created a new Postgres database, named Crowdfunding_db.
-5. Used the database schema, and created the tables in the correct order (campaign table was last) to handle the foreign keys.
-6. Verified the table creation by running a SELECT statement for each table.
-7. Imported each CSV file into its corresponding SQL table.
-8. Verified that each table had the correct data by running a SELECT statement for each.  Added screenshots of tables; in some cases they were partial tables (not complete rows and/or column counts).
+Used NoSQL_setup_final.ipynb for this section of the challenge.
+
+The magazine editors had some requested modifications for the database before any queries or analysis could be performed for them. The following changes were made to the establishments collection:
+
+1. An exciting new halal restaurant just opened in Greenwich, but hasn't been rated yet. The magazine asked to include it in the analysis. Therefore, the following information was added to the database:
+
+{   "BusinessName":"Penang Flavours",
+    "BusinessType":"Restaurant/Cafe/Canteen",
+    "BusinessTypeID":"",
+    "AddressLine1":"Penang Flavours",
+    "AddressLine2":"146A Plumstead Rd",
+    "AddressLine3":"London",
+    "AddressLine4":"",
+    "PostCode":"SE18 7DY",
+    "Phone":"",
+    "LocalAuthorityCode":"511",
+    "LocalAuthorityName":"Greenwich",
+    "LocalAuthorityWebSite":"http://www.royalgreenwich.gov.uk",
+    "LocalAuthorityEmailAddress":"health@royalgreenwich.gov.uk",
+    "scores":{
+        "Hygiene":"",
+        "Structural":"",
+        "ConfidenceInManagement":""
+    },
+    "SchemeType":"FHRS",
+    "geocode":{
+        "longitude":"0.08384000",
+        "latitude":"51.49014200"
+    },
+    "RightToReply":"",
+    "Distance":4623.9723280747176,
+    "NewRatingPending":True
+}
+
+2. The BusinessTypeID for "Restaurant/Cafe/Canteen" was found and returned only the BusinessTypeID and BusinessType fields.
+3. Updated the new restaurant with the BusinessTypeID that was found.
+4. The magazine was not interested in any establishments in Dover, so checked how many documents contained the Dover Local Authority. Then, removed any establishments within the Dover Local Authority from the database, and checked the number of documents to ensure they were deleted.
+5. Some of the number values were stored as strings, when they should be stored as numbers.
+   - Used update_many to convert latitude and longitude to decimal numbers.
+   - Used update_many to convert RatingValue to integer numbers.
+
+## Part 3 - Exploratory Analysis
+
+"Eat Safe, Love" food magazine had specific questions they wanted answered, which will help them find the locations they wished to visit and/or avoid.
+Used NoSQL_analysis_final.ipynb for this section of the challenge.
+
+Some notes to be aware of while exploring the dataset:
+- RatingValue refers to the overall rating decided by the Food Authority and ranges from 1-5. The higher the value, the better the rating.
+  This field also included non-numeric values such as 'Pass', where 'Pass' meant that the establishment passed their inspection but wasn't given a number rating. Non-         numeric values changed to nulls during the database setup before converting ratings to integers.
+- The scores for Hygiene, Structural, and ConfidenceInManagement worked in reverse. This meant, the higher the value, the worse the establishment is in these areas.
+
+The magazine editors questions were:
+1) Which establishments have a hygiene score equal to 20?
+2) Which establishments in London have a RatingValue greater than or equal to 4?
+3) What are the top 5 establishments with a RatingValue of 5, sorted by lowest hygiene score, nearest to the new restaurant added, "Penang Flavours"?
+4) How many establishments in each Local Authority area have a hygiene score of 0? Sorted the results from highest to lowest, and printed out the top ten local authority areas.
 
 ## References
 
-* Data for this dataset was generated by edX Boot Camps LLC, and is intended for educational purposes only.
+UK Food Standards Agency at https://www.food.gov.uk (2022). 
+UK food hygiene rating data API. https://ratings.food.gov.uk/open-data/en-GB contains public sector information licensed under the Open Government Licence v3.0 (https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/)
+Accessed Sept 9, 2022 and Sept 12, 2022 with the establishment settings as follows: longitude=51.5072, latitude=-0.1276, maxdistancelimit=4567, pagesize=10000, sortoptionkey=distance, pagenumber=(1,2,3,4,5,6,7,8).

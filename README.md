@@ -72,7 +72,7 @@ The magazine editors had requested some modifications for the database before an
 "Eat Safe, Love" food magazine had specific questions they wanted answered, which will help them find the locations they wished to visit and/or avoid.
 Used NoSQL_analysis_final.ipynb for this section of the challenge.
 
-Some notes to be aware of while exploring the dataset:
+Some notes about the dataset:
 - RatingValue refers to the overall rating decided by the Food Authority and ranges from 1-5. The higher the value, the better the rating.
   This field also included non-numeric values such as 'Pass', where 'Pass' meant that the establishment passed their inspection but wasn't given a number rating. Non-         numeric values changed to nulls during the database setup before converting ratings to integers.
 - The scores for Hygiene, Structural, and ConfidenceInManagement worked in reverse. This meant, the higher the value, the worse the establishment is in these areas.

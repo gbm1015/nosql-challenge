@@ -28,7 +28,7 @@ Used NoSQL_setup_final.ipynb for this section of the challenge.
 
 Used NoSQL_setup_final.ipynb for this section of the challenge.
 
-The magazine editors had some requested modifications for the database before any queries or analysis could be performed for them. The following changes were made to the establishments collection:
+The magazine editors had requested some modifications for the database before any queries or analysis could be performed for them. The following changes were made to the establishments collection:
 
 1. An exciting new halal restaurant just opened in Greenwich, but hasn't been rated yet. The magazine asked to include it in the analysis. Therefore, the following information was added to the database:
 

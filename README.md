@@ -2,7 +2,7 @@
 
 ## Background
 
-The UK Food Standards Agency evaluated various establishments across the United Kingdom, and gave them a food hygiene rating. The editors of a food magazine, Eat Safe, Love, contracted me to evaluate some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
+The UK Food Standards Agency evaluated various establishments across the United Kingdom, and gave them a food hygiene rating. The editors of a food magazine, Eat Safe, Love, requested the evaluation of some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
 
 ### Before opening the starter code in Jupyter Notebook
 

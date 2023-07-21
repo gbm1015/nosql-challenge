@@ -1,25 +1,30 @@
-# Mini Project 2: Building an ETL pipeline
+# NoSQL Challenge - "Eat Safe, Love" food magazine
 
 ## Background
 
-We (Gabrielle Bedewi, Max Glasser, and Joel Wiseman) partnered to practice building an ETL pipeline using Python, Pandas, and then used Python dictionary methods and regular expressions to extract and transform the data.  After transforming the data we created four CSV files and used the CSV file data to create an ERD and a table schema.  We then uploaded the CSV file data into a Postgres database.
+The UK Food Standards Agency evaluated various establishments across the United Kingdom, and gives them a food hygiene rating. The editors of a food magazine, Eat Safe, Love, contracted me to evaluate some of the ratings data in order to help their journalists and food critics decide where to focus future articles.
 
 ### Before opening the starter code in Jupyter Notebook
 
-1. We created a new repository in GitHub for this project called `Crowdfunding_ETL`. 
-2. Inside the new repository we cloned the new repository to our computers.
-3. Inside our local Git repository, we added and renamed the Jupitor notebook starter code ETL_Mini_Project_starter_code.ipynb to ETL_Mini_Project_GBedewi_MGlasser_JWiseman.ipynb.
-4. We then added the Resources folder containing the crowdfunding.xlsx and contacts.xlsx.
+1. I created a new repository in GitHub for this project called `nosql-challenge`. 
+2. Inside the new repository I cloned the new repository to my computer.
+3. Inside my local Git repository, I added and renamed the Jupitor notebook starter codes NoSQL_setup_starter.ipynb to NoSQL_setup_final.ipynb, and             NoSQL_analysis_starter.ipynb to NoSQL_analysis_final.ipynb.
+4. I then added the Resources folder containing the establishments.json file.
 
-## Part 1 - Created Dataframes then extracted and transformed the data
+## Part 1 - Database and Jupyter Notebook Set up
 
-1. Created the Category and Subcategory DataFrames.
-2. Created the Campaign DataFrame.
-3. Created the Contacts DataFrame.
-4. Extracted and transformed the data using Python dictionary methods (Python list comprehension) and using regular expressions.
-5. Stored the extracted data as CSV files in the Resources folder.
+Used NoSQL_setup_final.ipynb for this section of the challenge.
+
+1. Imported the data provided in the establishments.json file from the Terminal. Named the database uk_food and the collection establishments, and then copied the used text to import the data from the Terminal to a markdown cell in the notebook.
+2. Within the notebook, imported the libraries that were needed: PyMongo and Pretty Print (pprint).
+3. Createed an instance of the Mongo Client.
+4. Confirmed that the database was created and the data was loaded properly:
+   - Listed the databases that are in MongoDB. Confirmed that uk_food was listed.
+   - Listed the collection(s) in the database to ensure that establishments is there.
+   - Found and displayed one document in the establishments collection using find_one and displayed with pprint.
+5. Assigned the establishments collection to a variable to prepare the collection for use.
     
-## Part 2 - Created the Crowdfunding Database
+## Part 2 - Updated the Database
 
 1. Inspected the 4 CSV files (category.csv,subcategory.csv,contacts.csv, and campaign.csv), then sketched an ERD of the tables by using sqlflow.gudusoft.com
 2. Used the information from the ERD to create the table schema for each CSV file.  Our instructor, Ms. Kalika, also provided us with the schema sql code for creating the tables. 
